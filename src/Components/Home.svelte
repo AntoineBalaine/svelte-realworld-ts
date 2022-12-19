@@ -18,10 +18,10 @@
 				<div class="feed-toggle">
 					<ul class="nav nav-pills outline-active">
 						<li class="nav-item">
-							<a class="nav-link disabled" href="">Your Feed</a>
+							<a class="nav-link disabled" href="/">Your Feed</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" href="">Global Feed</a>
+							<a class="nav-link active" href="/">Global Feed</a>
 						</li>
 					</ul>
 				</div>
@@ -35,7 +35,7 @@
 
 					<div class="tag-list">
 						{#each data.tags.tags as tag}
-							<a href="" class="tag-pill tag-default">{tag}</a>
+							<a href="/" class="tag-pill tag-default">{tag}</a>
 						{/each}
 					</div>
 				</div>
