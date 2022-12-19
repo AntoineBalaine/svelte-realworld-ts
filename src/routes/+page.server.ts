@@ -5,8 +5,8 @@ import type { PageServerLoad } from "./$types";
 type Paths = keyof ApiTypes.paths;
 
 const page_size = 10;
-export const load: PageServerLoad = async ({ locals /*tb used for logged-in user */, url }) => {
-	const tab = url.searchParams.get("tab") || "all";
+export const load: PageServerLoad = async ({ /*locals tb used for logged-in user */ url }) => {
+	// const tab = url.searchParams.get("tab") || "all";
 	const tag = url.searchParams.get("tag");
 	const pageNumber = +(url.searchParams.get("page") ?? "1");
 
@@ -25,9 +25,6 @@ export const load: PageServerLoad = async ({ locals /*tb used for logged-in user
 		articlesCount
 	}: ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"] =
 		await api.call(api.RestMethods.GET, `${endPoint}/?${searchParams.toString()}`);
-
-	const getTags: Promise<{ tags: Array<string> }> = (async () =>
-		await api.call(api.RestMethods.GET, "tags"))();
 
 	return {
 		articles,
