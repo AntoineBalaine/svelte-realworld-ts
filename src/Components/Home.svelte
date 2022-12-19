@@ -1,6 +1,6 @@
 <script>
-	import ArticlePreview from './ArticlePreview.svelte';
-	import TagSection from './TagSection.svelte';
+	import ArticlePreview from "./ArticlePreview.svelte";
+	import TagSection from "./TagSection.svelte";
 </script>
 
 <div class="home-page">
@@ -25,8 +25,7 @@
 					</ul>
 				</div>
 
-				<ArticlePreview />
-				<ArticlePreview />
+				<slot />
 
 				<div class="article-preview">
 					<div class="article-meta">

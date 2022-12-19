@@ -1,5 +1,15 @@
 <script lang="ts">
-	import Home from '../Components/Home.svelte';
+	import ArticlePreview from "../components/ArticlePreview.svelte";
+	import Home from "../components/Home.svelte";
+	import type { PageData } from "./$types";
+	export let data: PageData;
 </script>
 
-<Home />
+<svelte:head>
+	<title>Conduit</title>
+</svelte:head>
+<Home>
+	{#each data.articles as article}
+		<ArticlePreview {article} />
+	{/each}
+</Home>
