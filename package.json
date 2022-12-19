@@ -11,7 +11,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"update-api-types": "npx openapi-typescript https://raw.githubusercontent.com/gothinkster/realworld/main/api/openapi.yml --output src/ApiTypes.d.ts"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -31,5 +32,8 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"openapi-typescript": "^6.1.0"
+	}
 }
