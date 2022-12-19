@@ -7,6 +7,7 @@ declare namespace App {
 	// interface Locals {}
 	interface PageData {
 		articles: ApiTypes.components["schemas"]["Article"][];
+		tags: string[];
 	}
 	// interface Platform {}
 }

@@ -8,7 +8,7 @@
 <svelte:head>
 	<title>Conduit</title>
 </svelte:head>
-<Home>
+<Home {data}>
 	{#each data.articles as article}
 		<ArticlePreview {article} />
 	{/each}
