@@ -12,7 +12,6 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$store: path.resolve("src/Store.ts"),
-			$ApiTypes: path.resolve("src/ApiTypes.d.ts"),
 			$Components: path.resolve("src/components")
 		}
 	}

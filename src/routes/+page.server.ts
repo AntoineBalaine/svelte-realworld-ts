@@ -1,7 +1,7 @@
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 import * as api from "$lib/ApiHelpers";
 import { PAGE_SIZE } from "$lib/Constants";
-import type * as ApiTypes from "../ApiTypes";
+import type * as ApiTypes from "../lib/ApiTypes";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ /*locals tb used for logged-in user */ url }) => {

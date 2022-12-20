@@ -1,6 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { store } from "$store";
-import type ApiTypes from "$ApiTypes";
+import type ApiTypes from "$lib/ApiTypes";
 import * as api from "$lib/ApiHelpers";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 

@@ -1,4 +1,4 @@
-import type * as ApiTypes from "$ApiTypes";
+import type * as ApiTypes from "$lib/ApiTypes";
 type Paths = keyof ApiTypes.paths;
 
 type ENDPOINTS_type = {

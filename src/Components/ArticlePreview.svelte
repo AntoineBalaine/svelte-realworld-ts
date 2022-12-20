@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type * as ApiTypes from "../ApiTypes";
+	import type * as ApiTypes from "$lib/ApiTypes";
 	export let article: ApiTypes.components["schemas"]["Article"];
 	const { author, updatedAt, favoritesCount, tagList, title, description, slug } = article;
 </script>
