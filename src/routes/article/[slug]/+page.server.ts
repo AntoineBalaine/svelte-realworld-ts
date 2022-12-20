@@ -2,7 +2,7 @@ import type { PageServerLoad } from "./$types";
 import { store } from "$store";
 import type ApiTypes from "$ApiTypes";
 import * as api from "$lib/ApiHelpers";
-type Paths = keyof ApiTypes.paths;
+import { ENDPOINTS } from "$lib/ApiEndpoints";
 
 export const load: PageServerLoad = async ({ params }) => {
 	console.log("called");
@@ -13,8 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (article) {
 		return article;
 	} else {
-		const endPoint: Paths = "/articles";
-		article = await api.call(api.RestMethods.GET, `${endPoint}/${slug}`);
+		article = await api.call(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/${slug}`);
 		return { article };
 	}
 };
