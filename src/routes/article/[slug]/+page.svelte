@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { store } from "$store";
-	import type ApiTypes from "$ApiTypes";
-	export let article: ApiTypes.components["schemas"]["Article"];
-	store.subscribe((data) => (article = data.articles[0]));
-	const { author, updatedAt, favoritesCount, title, body, description } = article;
+	import type { PageData } from "./$types";
+	export let data: PageData;
+
+	const { author, updatedAt, favoritesCount, title, body, description } = data;
 </script>
 
 <div class="article-page">
@@ -12,14 +11,14 @@
 			<h1>{title}</h1>
 
 			<div class="article-meta">
-				<a href="/{author.username}"><img src={author.image} alt="author profile" /></a>
+				<a href="/{author?.username}"><img src={author?.image} alt="author profile" /></a>
 				<div class="info">
-					<a href="/{author.username}" class="author">{author.username}</a>
+					<a href="/{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
 				<button class="btn btn-sm btn-outline-secondary">
 					<i class="ion-plus-round" />
-					&nbsp; Follow {author.username} <span class="counter">({favoritesCount})</span>
+					&nbsp; Follow {author?.username} <span class="counter">({favoritesCount})</span>
 				</button>
 				&nbsp;&nbsp;
 				<button class="btn btn-sm btn-outline-primary">
@@ -45,15 +44,15 @@
 
 		<div class="article-actions">
 			<div class="article-meta">
-				<a href="profile.html"><img src={author.image} alt="author profile" /></a>
+				<a href="profile.html"><img src={author?.image} alt="author profile" /></a>
 				<div class="info">
-					<a href="/{author.username}" class="author">{author.username}</a>
+					<a href="/{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
 
 				<button class="btn btn-sm btn-outline-secondary">
 					<i class="ion-plus-round" />
-					&nbsp; Follow {author.username}
+					&nbsp; Follow {author?.username}
 				</button>
 				&nbsp;
 				<button class="btn btn-sm btn-outline-primary">

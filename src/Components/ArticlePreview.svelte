@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type * as ApiTypes from "../ApiTypes";
 	export let article: ApiTypes.components["schemas"]["Article"];
-	const { author, updatedAt, favoritesCount, tagList, title, description } = article;
+	const { author, updatedAt, favoritesCount, tagList, title, description, slug } = article;
 </script>
 
 <div class="article-preview">
@@ -16,14 +16,14 @@
 			{favoritesCount}
 		</button>
 	</div>
-	<a href="/" class="preview-link">
+	<a href="/article/{slug}" class="preview-link">
 		<h1>{title}</h1>
 		<p>{description}</p>
 		<span>Read more...</span>
 		<ul class="tag-list">
 			{#each tagList as tag}
 				<li>
-					<a href="/" class="tag-pill tag-default">{tag}</a>
+					<a href="/article/{slug}" class="tag-pill tag-default">{tag}</a>
 				</li>
 			{/each}
 		</ul>
