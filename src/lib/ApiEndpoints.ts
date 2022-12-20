@@ -1,19 +1,16 @@
 import type * as ApiTypes from "$lib/ApiTypes";
 type Paths = keyof ApiTypes.paths;
 
-type ENDPOINTS_type = {
-	ARTICLES: Paths;
-	TAGS: Paths;
-};
-
 /**
- * would love to be using an enum such as:
+ * would love to be using an enum with typed values such as:
   enum ENDPOINTS {
     ARTICLES = <Paths>"/articles"
   }
- * but typescript doesn’t allow it.
+ * but typescript allows it only for numbers
  */
-export const ENDPOINTS: ENDPOINTS_type = {
-	ARTICLES: "/articles",
-	TAGS: "/tags"
+export const ENDPOINTS = {
+	ARTICLES: <Paths>"/articles",
+	TAGS: <Paths>"/tags",
+	USER: <Paths>"/user",
+	PROFILE: <Paths>"/profiles/{username}"
 };

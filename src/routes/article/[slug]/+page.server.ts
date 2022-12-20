@@ -5,7 +5,6 @@ import * as api from "$lib/ApiHelpers";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 
 export const load: PageServerLoad = async ({ params }) => {
-	console.log("called");
 	const slug = params.slug;
 	let articlesList = Array<ApiTypes.components["schemas"]["Article"]>();
 	store.subscribe((data) => (articlesList = data.articles));

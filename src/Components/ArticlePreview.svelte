@@ -6,9 +6,9 @@
 
 <div class="article-preview">
 	<div class="article-meta">
-		<a href="/"><img src={author.image} alt="author thumbnail" /></a>
+		<a href="/profile/@{author?.username}"><img src={author.image} alt="author thumbnail" /></a>
 		<div class="info">
-			<a href="/" class="author">{author.username}</a>
+			<a href="/profile/@{author?.username}" class="author">{author.username}</a>
 			<span class="date">{updatedAt}</span>
 		</div>
 		<button class="btn btn-outline-primary btn-sm pull-xs-right">

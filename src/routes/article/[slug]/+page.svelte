@@ -11,9 +11,9 @@
 			<h1>{title}</h1>
 
 			<div class="article-meta">
-				<a href="/{author?.username}"><img src={author?.image} alt="author profile" /></a>
+				<a href="/profile/@{author?.username}"><img src={author?.image} alt="author profile" /></a>
 				<div class="info">
-					<a href="/{author?.username}" class="author">{author?.username}</a>
+					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
 				<button class="btn btn-sm btn-outline-secondary">
