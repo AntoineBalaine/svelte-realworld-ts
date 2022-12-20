@@ -1,7 +1,6 @@
 import * as api from "$lib/ApiHelpers";
 import type * as ApiTypes from "../ApiTypes";
 import type { PageServerLoad } from "./$types";
-
 type Paths = keyof ApiTypes.paths;
 
 const page_size = 10;
@@ -26,10 +25,11 @@ export const load: PageServerLoad = async ({ /*locals tb used for logged-in user
 	}: ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"] =
 		await api.call(api.RestMethods.GET, `${endPoint}/?${searchParams.toString()}`);
 
-	return {
+	const newStore = {
 		articles,
 		pages: Math.ceil(articlesCount || 10 / page_size),
 		tags: (async (): Promise<{ tags: Array<string> }> =>
 			await api.call(api.RestMethods.GET, "tags"))()
 	};
+	return newStore;
 };

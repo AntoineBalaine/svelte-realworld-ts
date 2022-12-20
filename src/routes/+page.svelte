@@ -3,6 +3,9 @@
 	import Home from "../components/Home.svelte";
 	import type { PageData } from "./$types";
 	export let data: PageData;
+
+	import { store } from "$store";
+	store.set({ ...data });
 </script>
 
 <svelte:head>
