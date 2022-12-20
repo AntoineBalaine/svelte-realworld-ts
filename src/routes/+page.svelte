@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ArticlePreview from "../components/ArticlePreview.svelte";
-	import Home from "../components/Home.svelte";
+	import ArticlePreview from "$Components/ArticlePreview.svelte";
+	import Home from "$Components/Home.svelte";
 	import type { PageData } from "./$types";
 	export let data: PageData;
 
