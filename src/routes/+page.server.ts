@@ -26,6 +26,7 @@ export const load: PageServerLoad = async ({ /*locals tb used for logged-in user
 		pages: Math.ceil(articlesCount || 10 / PAGE_SIZE),
 		tags: (async (): Promise<{ tags: Array<string> }> =>
 			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS))(),
-		isLoggedIn: false
+		isLoggedIn: false,
+		pageNumber
 	};
 };
