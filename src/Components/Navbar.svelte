@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 
+	let route: string | null;
 	let isLoggedIn: boolean;
 	page.subscribe((pageContents) => {
 		isLoggedIn = pageContents.data.isLoggedIn;
+		route = pageContents.route.id;
 	});
 </script>
 
@@ -13,7 +15,7 @@
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
 				<!-- Add "active" class when you're on that page" -->
-				<a class="nav-link active" href="/">Home</a>
+				<a class="nav-link active" class:active={!route || route === "/"} href="/">Home</a>
 			</li>
 			{#if isLoggedIn}
 				<li class="nav-item">
@@ -24,10 +26,10 @@
 				</li>
 			{/if}
 			<li class="nav-item">
-				<a class="nav-link" href="/sign-in">Sign in</a>
+				<a class="nav-link" class:active={route === "/sign-in"} href="/sign-in">Sign in</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/sign-up">Sign up</a>
+				<a class="nav-link" class:active={route === "/sign-up"} href="/sign-up">Sign up</a>
 			</li>
 		</ul>
 	</div>
