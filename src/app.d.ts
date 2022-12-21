@@ -8,6 +8,8 @@ declare namespace App {
 	interface PageData {
 		articles: ApiTypes.components["schemas"]["Article"][];
 		tags: string[];
+		pages: number;
+		isLoggedIn: boolean;
 	}
 	// interface Platform {}
 }

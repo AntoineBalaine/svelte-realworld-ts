@@ -1,10 +1,12 @@
 <script lang="ts">
-	import type ApiTypes from "$lib/ApiTypes";
 	import ArticlePreview from "$Components/ArticlePreview.svelte";
 	import type { PageData } from "./$types";
+	import { store } from "$store";
 
 	export let data: PageData;
 	const { profile } = data.author;
+	let isLoggedIn = false;
+	store.subscribe((data) => (isLoggedIn = data.isLoggedIn));
 </script>
 
 <div class="profile-page">
@@ -32,11 +34,13 @@
 				<div class="articles-toggle">
 					<ul class="nav nav-pills outline-active">
 						<li class="nav-item">
-							<a class="nav-link active" href="/">My Articles</a>
+							<a class="nav-link active" href={null}>My Articles</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/">Favorited Articles</a>
-						</li>
+						{#if isLoggedIn}
+							<li class="nav-item">
+								<a class="nav-link" href={null}>Favorited Articles</a>
+							</li>
+						{/if}
 					</ul>
 				</div>
 				{#each data.articles.articles as article}
