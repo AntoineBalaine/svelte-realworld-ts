@@ -21,12 +21,11 @@ export const load: PageServerLoad = async ({ /*locals tb used for logged-in user
 		articlesCount
 	}: ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"] =
 		await api.call(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/?${searchParams.toString()}`);
-
-	const newStore = {
+	return {
 		articles,
 		pages: Math.ceil(articlesCount || 10 / PAGE_SIZE),
 		tags: (async (): Promise<{ tags: Array<string> }> =>
-			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS))()
+			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS))(),
+		isLoggedIn: false
 	};
-	return newStore;
 };

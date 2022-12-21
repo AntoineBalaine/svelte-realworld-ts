@@ -1,7 +1,10 @@
 <script lang="ts">
 	import type { PageData } from "../routes/$types";
-
 	export let data: PageData;
+	import { page } from "$app/stores";
+
+	$: tag = $page.url.searchParams.get("tag");
+	$: tab = $page.url.searchParams.get("tab");
 </script>
 
 <div class="home-page">
@@ -17,12 +20,24 @@
 			<div class="col-md-9">
 				<div class="feed-toggle">
 					<ul class="nav nav-pills outline-active">
+						{#if data.isLoggedIn}
+							<li class="nav-item">
+								<a class="nav-link " class:active={tab === "feed"} href="/?tab=feed">Your Feed</a>
+							</li>
+						{/if}
 						<li class="nav-item">
-							<a class="nav-link disabled" href="/">Your Feed</a>
+							<a class="nav-link" class:active={(tab === "all" || !tab) && !tag} href="/"
+								>Global Feed</a
+							>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="/">Global Feed</a>
-						</li>
+						{#if tag}
+							<li class="nav-item">
+								<a href="/?tag={tag}" class="nav-link active">
+									<i class="ion-pound" />
+									{tag}
+								</a>
+							</li>
+						{/if}
 					</ul>
 				</div>
 
@@ -35,7 +50,7 @@
 
 					<div class="tag-list">
 						{#each data.tags.tags as tag}
-							<a href="/" class="tag-pill tag-default">{tag}</a>
+							<a href="/?tag={tag}" class="tag-pill tag-default">{tag}</a>
 						{/each}
 					</div>
 				</div>
