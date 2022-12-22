@@ -38,17 +38,32 @@
 					</ul>
 				{/if}
 
-				<form>
+				<form method="POST">
 					{#if SignInUp_prop === SignIn_Up_Alternatives.SignUp}
 						<fieldset class="form-group">
-							<input class="form-control form-control-lg" type="text" placeholder="Your Name" />
+							<input
+								class="form-control form-control-lg"
+								type="text"
+								name="username"
+								placeholder="Your Name"
+							/>
 						</fieldset>
 					{/if}
 					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Email" />
+						<input
+							class="form-control form-control-lg"
+							name="email"
+							type="email"
+							placeholder="Email"
+						/>
 					</fieldset>
 					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="password" placeholder="Password" />
+						<input
+							class="form-control form-control-lg"
+							name="password"
+							type="password"
+							placeholder="Password"
+						/>
 					</fieldset>
 					<button class="btn btn-lg btn-primary pull-xs-right">{SignIn_or_Up.buttonText}</button>
 				</form>

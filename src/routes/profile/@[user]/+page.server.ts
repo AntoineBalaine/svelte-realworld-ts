@@ -1,14 +1,14 @@
 import * as api from "$lib/ApiHelpers";
-import type { PageServerLoad } from "./$types";
 import { PAGE_SIZE } from "$lib/Constants";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 import type ApiTypes from "$lib/ApiTypes";
+import type { ServerLoadEvent } from "@sveltejs/kit";
 
-export const load: PageServerLoad = async ({ params, url }) => {
+export const load = async ({ params, url }: ServerLoadEvent) => {
 	const pageNumber = Number(url.searchParams.get("page") ?? "1");
 
 	const searchParams = new URLSearchParams();
-	searchParams.set("author", params.user);
+	searchParams.set("author", params.user || "");
 	searchParams.set("limit", PAGE_SIZE.toString());
 	searchParams.set("offset", ((pageNumber - 1) * PAGE_SIZE).toString());
 
@@ -20,6 +20,6 @@ export const load: PageServerLoad = async ({ params, url }) => {
 		author: (async () =>
 			await api.call<
 				ApiTypes.components["responses"]["ProfileResponse"]["content"]["application/json"]
-			>(api.RestMethods.GET, ENDPOINTS.PROFILE.replace(/{username}/, params.user)))()
+			>(api.RestMethods.GET, ENDPOINTS.PROFILE.replace(/{username}/, params.user || "")))()
 	};
 };

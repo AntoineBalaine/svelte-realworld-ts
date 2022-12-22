@@ -1,10 +1,10 @@
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 import * as api from "$lib/ApiHelpers";
 import { PAGE_SIZE } from "$lib/Constants";
+import type { ServerLoadEvent } from "@sveltejs/kit";
 import type * as ApiTypes from "../lib/ApiTypes";
-import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ /*locals tb used for logged-in user */ url }) => {
+export const load = async ({ /*locals tb used for logged-in user */ url }: ServerLoadEvent) => {
 	// const tab = url.searchParams.get("tab") || "all";
 	const tag = url.searchParams.get("tag");
 	const pageNumber = +(url.searchParams.get("page") ?? "1");
