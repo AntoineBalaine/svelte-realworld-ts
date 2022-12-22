@@ -12,7 +12,10 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (article) {
 		return article;
 	} else {
-		article = await api.call(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/${slug}`);
+		article = await api.call<ApiTypes.components["schemas"]["Article"]>(
+			api.RestMethods.GET,
+			`${ENDPOINTS.ARTICLES}/${slug}`
+		);
 		return { article };
 	}
 };

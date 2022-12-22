@@ -13,13 +13,13 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	searchParams.set("offset", ((pageNumber - 1) * PAGE_SIZE).toString());
 
 	return {
-		articles: (async (): Promise<
-			ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"]
-		> =>
-			await api.call(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/?${searchParams.toString()}`))(),
-		author: (async (): Promise<
-			ApiTypes.components["responses"]["ProfileResponse"]["content"]["application/json"]
-		> =>
-			await api.call(api.RestMethods.GET, ENDPOINTS.PROFILE.replace(/{username}/, params.user)))()
+		articles: (async () =>
+			await api.call<
+				ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"]
+			>(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/?${searchParams.toString()}`))(),
+		author: (async () =>
+			await api.call<
+				ApiTypes.components["responses"]["ProfileResponse"]["content"]["application/json"]
+			>(api.RestMethods.GET, ENDPOINTS.PROFILE.replace(/{username}/, params.user)))()
 	};
 };

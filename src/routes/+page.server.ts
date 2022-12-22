@@ -16,11 +16,12 @@ export const load: PageServerLoad = async ({ /*locals tb used for logged-in user
 	if (tag) {
 		searchParams.set("tag", tag);
 	}
-	const {
-		articles,
-		articlesCount
-	}: ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"] =
-		await api.call(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/?${searchParams.toString()}`);
+
+	// Consumer
+	const { articles, articlesCount } = await api.call<
+		ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"]
+	>(api.RestMethods.GET, ENDPOINTS.ARTICLES);
+
 	return {
 		articles,
 		pages: Math.ceil(articlesCount || 10 / PAGE_SIZE),
