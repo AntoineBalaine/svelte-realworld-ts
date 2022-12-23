@@ -35,7 +35,6 @@
 				<p>
 					{description}
 				</p>
-				<!-- 				<h2 id="introducing-ionic">{slug}</h2> -->
 				<p>{body}</p>
 			</div>
 		</div>
@@ -46,7 +45,7 @@
 			<div class="article-meta">
 				<a href="profile.html"><img src={author?.image} alt="author profile" /></a>
 				<div class="info">
-					<a href="/{author?.username}" class="author">{author?.username}</a>
+					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
 
