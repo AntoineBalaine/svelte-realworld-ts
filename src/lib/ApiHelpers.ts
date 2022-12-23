@@ -17,7 +17,7 @@ export const call = async <T>(
 ): Promise<T> => {
 	const headers = new Headers([["Content-Type", "application/json"]]);
 	if (token) {
-		headers.set("Authorization", token);
+		headers.set("Authorization", `Token ${token}`);
 	}
 
 	const reqData: RequestInit = {
