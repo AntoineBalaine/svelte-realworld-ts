@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import type { components } from "$lib/ApiTypes";
 
 	let route: string | null;
 	let isLoggedIn: boolean;
+	export let user: components["schemas"]["User"] | null = null;
 	page.subscribe((pageContents) => {
 		isLoggedIn = pageContents.data.isLoggedIn;
 		route = pageContents.route.id;
+		user = pageContents.data.user;
 	});
 </script>
 
@@ -17,20 +20,24 @@
 				<!-- Add "active" class when you're on that page" -->
 				<a class="nav-link active" class:active={!route || route === "/"} href="/">Home</a>
 			</li>
-			{#if isLoggedIn}
+			{#if user}
 				<li class="nav-item">
 					<a class="nav-link" href="/"> <i class="ion-compose" />&nbsp;New Article </a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/"> <i class="ion-gear-a" />&nbsp;Settings </a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/sign-out">Sign out</a>
+				</li>
+			{:else}
+				<li class="nav-item">
+					<a class="nav-link" class:active={route === "/sign-in"} href="/sign-in">Sign in</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" class:active={route === "/sign-up"} href="/sign-up">Sign up</a>
+				</li>
 			{/if}
-			<li class="nav-item">
-				<a class="nav-link" class:active={route === "/sign-in"} href="/sign-in">Sign in</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" class:active={route === "/sign-up"} href="/sign-up">Sign up</a>
-			</li>
 		</ul>
 	</div>
 </nav>

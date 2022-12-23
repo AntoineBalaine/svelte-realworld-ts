@@ -4,7 +4,7 @@ import { PAGE_SIZE } from "$lib/Constants";
 import type { ServerLoadEvent } from "@sveltejs/kit";
 import type * as ApiTypes from "../lib/ApiTypes";
 
-export const load = async ({ /*locals tb used for logged-in user */ url }: ServerLoadEvent) => {
+export const load = async ({ locals, url }: ServerLoadEvent) => {
 	// const tab = url.searchParams.get("tab") || "all";
 	const tag = url.searchParams.get("tag");
 	const pageNumber = +(url.searchParams.get("page") ?? "1");
@@ -28,6 +28,7 @@ export const load = async ({ /*locals tb used for logged-in user */ url }: Serve
 		tags: (async (): Promise<{ tags: Array<string> }> =>
 			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS))(),
 		isLoggedIn: false,
-		pageNumber
+		pageNumber,
+		user: locals.user
 	};
 };
