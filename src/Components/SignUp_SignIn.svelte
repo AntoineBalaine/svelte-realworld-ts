@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+	import type ApiTypes from "$lib/ApiTypes";
 	import { SignIn_Up_Alternatives } from "$lib/Types";
 
 	interface SignDta {
@@ -20,6 +22,9 @@
 	};
 
 	export let SignInUp_prop: SignIn_Up_Alternatives;
+	export let form:
+		| ApiTypes.operations["CreateUser"]["responses"]["422"]["content"]["application/json"]
+		| null = null;
 	$: SignIn_or_Up = SignInUp_prop === SignIn_Up_Alternatives.SignUp ? SignUp : SignInDta;
 </script>
 
@@ -31,14 +36,15 @@
 				<p class="text-xs-center">
 					<a href={SignIn_or_Up.path}>{SignIn_or_Up.question}</a>
 				</p>
-
-				{#if false}
+				{#if form}
 					<ul class="error-messages">
-						<li>That email is already taken</li>
+						{#each Object.entries(form.errors) as [key, value]}
+							<li>{key} {value}</li>
+						{/each}
 					</ul>
 				{/if}
 
-				<form method="POST">
+				<form method="POST" use:enhance>
 					{#if SignInUp_prop === SignIn_Up_Alternatives.SignUp}
 						<fieldset class="form-group">
 							<input
