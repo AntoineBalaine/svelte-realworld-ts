@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import type { components } from "$lib/ApiTypes";
-
+	import type { PageData } from "../routes/$types";
+	export let data: PageData;
 	let route: string | null;
 	let isLoggedIn: boolean;
-	export let user: components["schemas"]["User"] | null = null;
+	const { user } = data;
 	page.subscribe((pageContents) => {
 		isLoggedIn = pageContents.data.isLoggedIn;
 		route = pageContents.route.id;
-		user = pageContents.data.user;
 	});
 </script>
 
