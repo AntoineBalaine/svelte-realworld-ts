@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import type { components } from "$lib/ApiTypes";
 	import type { PageData } from "../routes/$types";
 	export let data: PageData;
 	let route: string | null;

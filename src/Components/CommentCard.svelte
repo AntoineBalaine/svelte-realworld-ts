@@ -5,7 +5,7 @@
 				<textarea class="form-control" placeholder="Write a comment..." rows="3" />
 			</div>
 			<div class="card-footer">
-				<img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+				<img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" alt={null} />
 				<button class="btn btn-sm btn-primary">Post Comment</button>
 			</div>
 		</form>
@@ -17,11 +17,11 @@
 		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 	</div>
 	<div class="card-footer">
-		<a href="" class="comment-author">
-			<img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+		<a href={null} class="comment-author">
+			<img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" alt={null} />
 		</a>
 		&nbsp;
-		<a href="" class="comment-author">Jacob Schmidt</a>
+		<a href={null} class="comment-author">Jacob Schmidt</a>
 		<span class="date-posted">Dec 29th</span>
 	</div>
 </div>

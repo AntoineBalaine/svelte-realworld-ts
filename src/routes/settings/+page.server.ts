@@ -28,7 +28,6 @@ export const actions: Actions = {
 					image: formData.get("image")?.toString() || ""
 				}
 			};
-		console.log("requestJson", requestJson);
 
 		const response = await api.call<
 			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["200"]

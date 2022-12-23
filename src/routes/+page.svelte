@@ -13,9 +13,9 @@
 	store.set({ ...data });
 
 	$: tag = $page.url.searchParams.get("tag");
-	$: articles = !!tag
+	$: articles = tag
 		? data.articles.filter((article) => {
-				return !!tag && article.tagList.includes(tag);
+				return tag && article.tagList.includes(tag);
 		  })
 		: data.articles;
 </script>
