@@ -25,7 +25,7 @@
 					<a class="nav-link" href="/"> <i class="ion-compose" />&nbsp;New Article </a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/"> <i class="ion-gear-a" />&nbsp;Settings </a>
+					<a class="nav-link" href="/settings"> <i class="ion-gear-a" />&nbsp;Settings </a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/sign-out">Sign out</a>
