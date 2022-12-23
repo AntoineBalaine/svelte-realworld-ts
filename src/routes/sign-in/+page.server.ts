@@ -15,13 +15,24 @@ export const load = async ({ parent }: ServerLoadEvent) => {
 export const actions: Actions = {
 	default: async (requestEvent) => {
 		const formData = await requestEvent.request.formData();
-		const requestJson = Object.fromEntries(formData.entries());
+
+		const requestJson: ApiTypes.components["requestBodies"]["NewUserRequest"]["content"]["application/json"] =
+			{
+				user: {
+					password: formData.get("password")?.toString() || "",
+					email: formData.get("email")?.toString() || "",
+					username: formData.get("username")?.toString() || ""
+				}
+			};
 
 		const response = await api.call<
 			ApiTypes.components["responses"]["UserResponse"]["content"]["application/json"]
 		>(api.RestMethods.POST, `${ENDPOINTS.LOGIN}`, JSON.stringify(requestJson));
 
-		requestEvent.cookies.set("jwt", JSON.stringify(response.user), { path: "/" });
+		const stringUser = JSON.stringify(response.user);
+		if (stringUser) {
+			requestEvent.cookies.set("jwt", stringUser, { path: "/" });
+		}
 
 		throw redirect(307, "/");
 	}

@@ -38,6 +38,6 @@ export const call = async <T>(
 			return text ? JSON.parse(text) : {};
 		})
 		.catch((err) => {
-			throw error(err.status);
+			throw error(err);
 		});
 };
