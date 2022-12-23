@@ -14,14 +14,25 @@ export const load = async ({ parent }: ServerLoadEvent) => {
 export const actions: Actions = {
 	default: async (requestEvent) => {
 		const formData = await requestEvent.request.formData();
-		const requestJson = Object.fromEntries(formData.entries());
+		const requestJson: ApiTypes.operations["CreateUser"]["requestBody"]["content"]["application/json"] =
+			{
+				user: {
+					password: formData.get("password")?.toString() || "",
+					email: formData.get("email")?.toString() || "",
+					username: formData.get("username")?.toString() || ""
+				}
+			};
 
 		const response = await api.call<
-			ApiTypes.components["responses"]["UserResponse"]["content"]["application/json"]
+			| ApiTypes.operations["CreateUser"]["responses"]["201"]["content"]["application/json"]
+			| ApiTypes.operations["CreateUser"]["responses"]["422"]["content"]["application/json"]
 		>(api.RestMethods.POST, `${ENDPOINTS.CREATE_USER}`, JSON.stringify(requestJson));
+		if ("errors" in response) {
+			return response;
+		} else {
+			requestEvent.cookies.set("jwt", JSON.stringify(response.user), { path: "/" });
 
-		requestEvent.cookies.set("jwt", JSON.stringify(response.user), { path: "/" });
-
-		throw redirect(307, "/");
+			throw redirect(307, "/");
+		}
 	}
 };
