@@ -1,0 +1,64 @@
+// Vitest Snapshot v1
+
+exports[`VerticalTabs Component > should render the component 1`] = `
+<body>
+  <div>
+    <nav
+      class="navbar navbar-light"
+    >
+      <div
+        class="container"
+      >
+        <a
+          class="navbar-brand"
+          data-testid="TitleNav"
+          href="/"
+        >
+          conduit
+        </a>
+         
+        <ul
+          class="nav navbar-nav pull-xs-right"
+        >
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link active"
+              data-testid="HomeNav"
+              href="/"
+            >
+              Home
+            </a>
+          </li>
+           
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link"
+              data-testid="SignInNav"
+              href="/sign-in"
+            >
+              Sign in
+            </a>
+          </li>
+           
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link"
+              data-testid="SignUpNav"
+              href="/sign-up"
+            >
+              Sign up
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--&lt;Navbar&gt;-->
+  </div>
+</body>
+`;
