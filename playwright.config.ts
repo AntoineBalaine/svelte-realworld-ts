@@ -8,7 +8,7 @@ const config: PlaywrightTestConfig = {
 	use: {
 		testIdAttribute: "data-testid"
 	},
-	testDir: "tests"
+	testDir: "tests/browser"
 };
 
 export default config;
