@@ -5,6 +5,9 @@ const config: PlaywrightTestConfig = {
 		command: "npm run build && npm run preview",
 		port: 4173
 	},
+	use: {
+		testIdAttribute: "data-testid"
+	},
 	testDir: "tests"
 };
 
