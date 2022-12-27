@@ -8,7 +8,11 @@ const config: PlaywrightTestConfig = {
 	use: {
 		testIdAttribute: "data-testid"
 	},
-	testDir: "tests/browser"
+	testDir: "tests/browser",
+	fullyParallel: true,
+	expect: {
+		toHaveScreenshot: { maxDiffPixels: 100 }
+	}
 };
 
 export default config;

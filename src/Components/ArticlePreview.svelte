@@ -8,10 +8,10 @@
 	<div class="article-meta">
 		<a href="/profile/@{author?.username}"><img src={author.image} alt="author thumbnail" /></a>
 		<div class="info">
-			<a href="/profile/@{author?.username}" data-testid="AuthorUsernamePreview" class="author"
+			<a href="/profile/@{author?.username}" data-testid="author-username" class="author"
 				>{author.username}</a
 			>
-			<span class="date">{updatedAt}</span>
+			<span data-testid="author-updatedAt" class="date">{updatedAt}</span>
 		</div>
 		<button class="btn btn-outline-primary btn-sm pull-xs-right">
 			<i class="ion-heart" />
@@ -19,8 +19,8 @@
 		</button>
 	</div>
 	<a href="/article/{slug}" class="preview-link">
-		<h1>{title}</h1>
-		<p>{description}</p>
+		<h1 data-testid="article-title">{title}</h1>
+		<p data-testid="article-description">{description}</p>
 		<span>Read more...</span>
 		<ul class="tag-list">
 			{#each tagList as tag}

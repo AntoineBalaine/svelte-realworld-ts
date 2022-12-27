@@ -1,0 +1,116 @@
+// Vitest Snapshot v1
+
+exports[`VerticalTabs Component > should render the component 1`] = `
+<body>
+  <div>
+    <div
+      class="article-preview"
+    >
+      <div
+        class="article-meta"
+      >
+        <a
+          href="/profile/@el svelte autor"
+        >
+          <img
+            alt="author thumbnail"
+            src=""
+          />
+        </a>
+         
+        <div
+          class="info"
+        >
+          <a
+            class="author"
+            data-testid="author-username"
+            href="/profile/@el svelte autor"
+          >
+            el svelte autor
+          </a>
+           
+          <span
+            class="date"
+            data-testid="author-updatedAt"
+          >
+            place-holder date
+          </span>
+        </div>
+         
+        <button
+          class="btn btn-outline-primary btn-sm pull-xs-right"
+        >
+          <i
+            class="ion-heart"
+          />
+           
+          55
+        </button>
+      </div>
+       
+      <a
+        class="preview-link"
+        href="/article/thething"
+      >
+        <h1
+          data-testid="article-title"
+        >
+          The thing
+        </h1>
+         
+        <p
+          data-testid="article-description"
+        >
+          this article is about a thing
+        </p>
+         
+        <span>
+          Read more...
+        </span>
+         
+        <ul
+          class="tag-list"
+        >
+          <li>
+            <a
+              class="tag-pill tag-default tag-outline"
+              href="/?tag=fascinating"
+            >
+              fascinating
+            </a>
+             
+          </li>
+          <li>
+            <a
+              class="tag-pill tag-default tag-outline"
+              href="/?tag=article"
+            >
+              article
+            </a>
+             
+          </li>
+          <li>
+            <a
+              class="tag-pill tag-default tag-outline"
+              href="/?tag=thing"
+            >
+              thing
+            </a>
+             
+          </li>
+          <li>
+            <a
+              class="tag-pill tag-default tag-outline"
+              href="/?tag=things"
+            >
+              things
+            </a>
+             
+          </li>
+        </ul>
+      </a>
+    </div>
+    <!--&lt;ArticlePreview&gt;-->
+  </div>
+</body>
+`;
