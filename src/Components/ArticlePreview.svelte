@@ -8,7 +8,9 @@
 	<div class="article-meta">
 		<a href="/profile/@{author?.username}"><img src={author.image} alt="author thumbnail" /></a>
 		<div class="info">
-			<a href="/profile/@{author?.username}" class="author">{author.username}</a>
+			<a href="/profile/@{author?.username}" data-testid="AuthorUsernamePreview" class="author"
+				>{author.username}</a
+			>
 			<span class="date">{updatedAt}</span>
 		</div>
 		<button class="btn btn-outline-primary btn-sm pull-xs-right">
