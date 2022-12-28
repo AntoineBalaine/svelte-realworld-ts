@@ -24,7 +24,7 @@ export const call = async <T>(
 	}
 
 	const reqData: RequestInit = {
-		body,
+		...(!(method === RestMethods.GET) ? { body } : {}),
 		method,
 		headers
 	};

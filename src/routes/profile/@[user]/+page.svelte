@@ -36,9 +36,11 @@
 						<li class="nav-item">
 							<a class="nav-link active" href={null}>My Articles</a>
 						</li>
-						{#if isLoggedIn}
+						{#if data.user}
 							<li class="nav-item">
-								<a class="nav-link" href={null}>Favorited Articles</a>
+								<a class="nav-link" href="/profile/@{data.user.username}/favorites"
+									>Favorited Articles</a
+								>
 							</li>
 						{/if}
 					</ul>
