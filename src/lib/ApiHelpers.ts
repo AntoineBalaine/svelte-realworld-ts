@@ -1,4 +1,7 @@
+import * as api from "$lib/ApiHelpers";
+import type ApiTypes from "$lib/ApiTypes";
 import { error } from "@sveltejs/kit";
+import { ENDPOINTS } from "./ApiEndpoints";
 export const ApiBaseURL = new URL("https://api.realworld.io/api");
 export enum RestMethods {
 	GET = "GET",
@@ -40,4 +43,20 @@ export const call = async <T>(
 		.catch((err) => {
 			throw error(err);
 		});
+};
+
+export const getArticle = async (
+	slug: string | undefined,
+	articlesList: Array<ApiTypes.components["schemas"]["Article"]>
+) => {
+	let article = articlesList.find((arti) => arti.slug === slug);
+	if (article) {
+		return article;
+	} else {
+		const response = await api.call<
+			ApiTypes.operations["GetArticle"]["responses"]["200"]["content"]["application/json"]
+		>(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/${slug}`);
+		article = response.article;
+		return article;
+	}
 };
