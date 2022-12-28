@@ -3,9 +3,12 @@
 	import type { PageData } from "../routes/$types";
 	export let data: PageData;
 	let route: string | null;
+	let userPageParam: string | null;
 	const { user } = data;
+
 	page.subscribe((pageContents) => {
 		route = pageContents.route.id;
+		userPageParam = pageContents.params.user;
 	});
 </script>
 
@@ -45,6 +48,18 @@
 						href="/settings"
 					>
 						<i class="ion-gear-a" />&nbsp;Settings
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						data-testid="SettingsNav"
+						class:active={userPageParam === user.username}
+						href="/profile/@{user.username}"
+					>
+						<img src={user.image} class="img-circle" style="height: 15px;" alt="author thumbnail" />
+						&nbsp;{user.username}
 					</a>
 				</li>
 				<li class="nav-item">
