@@ -20,11 +20,6 @@
 			<div class="col-md-9">
 				<div class="feed-toggle">
 					<ul class="nav nav-pills outline-active">
-						{#if data.isLoggedIn}
-							<li class="nav-item">
-								<a class="nav-link " class:active={tab === "feed"} href="/?tab=feed">Your Feed</a>
-							</li>
-						{/if}
 						<li class="nav-item">
 							<a class="nav-link" class:active={(tab === "all" || !tab) && !tag} href="/"
 								>Global Feed</a
@@ -59,7 +54,8 @@
 
 					<div class="tag-list">
 						{#each data.tags.tags as tag}
-							<a href="/?tag={tag}" class="tag-pill tag-default">{tag}</a>
+							<a href="/?tag={tag}" data-testid="homepage-tag" class="tag-pill tag-default">{tag}</a
+							>
 						{/each}
 					</div>
 				</div>
