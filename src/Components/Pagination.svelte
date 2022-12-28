@@ -27,7 +27,7 @@
 </script>
 
 <nav aria-label="Page navigation example">
-	<ul class="pagination">
+	<ul class="pagination" data-testid="pagination-list">
 		{#if pageNumber - 1 > 0}
 			<li class="page-item">
 				<a class="page-link" href="/?page={pageNumber - 1}">Previous</a>

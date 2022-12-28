@@ -1,0 +1,20 @@
+// Vitest Snapshot v1
+
+exports[`VerticalTabs Component > should render the component 1`] = `
+<body>
+  <div>
+    <nav
+      aria-label="Page navigation example"
+    >
+      <ul
+        class="pagination"
+        data-testid="pagination-list"
+      >
+         
+         
+      </ul>
+    </nav>
+    <!--&lt;Pagination&gt;-->
+  </div>
+</body>
+`;
