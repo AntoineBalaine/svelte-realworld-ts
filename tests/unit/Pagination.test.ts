@@ -4,7 +4,7 @@ import Pagination from "src/components/Pagination.svelte";
 
 import type { ComponentProps } from "svelte";
 
-describe("VerticalTabs Component", () => {
+describe("Pagination Component", () => {
 	test("should render the component", () => {
 		const props: ComponentProps<Pagination> = {};
 		const paginationPreview = render(Pagination, props);

@@ -5,7 +5,7 @@ import Navbar from "src/components/Navbar.svelte";
 import type { ComponentProps } from "svelte";
 import { articleSample } from "tests/DataSamples";
 
-describe("VerticalTabs Component", () => {
+describe("Navbar Component", () => {
 	test("should render the component", () => {
 		const navbarProps: ComponentProps<Navbar> = {
 			data: {

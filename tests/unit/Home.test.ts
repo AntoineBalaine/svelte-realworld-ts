@@ -5,7 +5,7 @@ import Home from "src/components/Home.svelte";
 import type { ComponentProps } from "svelte";
 import { articleSample } from "tests/DataSamples";
 
-describe("VerticalTabs Component", () => {
+describe("Home Component", () => {
 	test("should render the component", () => {
 		const homeProps: ComponentProps<Home> = {
 			data: {
