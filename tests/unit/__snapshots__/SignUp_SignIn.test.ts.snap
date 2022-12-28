@@ -1,0 +1,166 @@
+// Vitest Snapshot v1
+
+exports[`SignUp_SignIn Component > Sign In: should render the component 1`] = `
+<body>
+  <div>
+    <div
+      class="auth-page"
+    >
+      <div
+        class="container page"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6 offset-md-3 col-xs-12"
+          >
+            <h1
+              class="text-xs-center"
+              data-testid="signInUp-title"
+            >
+              Sign in
+            </h1>
+             
+            <p
+              class="text-xs-center"
+            >
+              <a
+                data-testid="signInUp-switch"
+                href="/sign-up"
+              >
+                Don’t have an account yet?
+              </a>
+            </p>
+             
+             
+            <form
+              method="POST"
+            >
+               
+              <fieldset
+                class="form-group"
+              >
+                <input
+                  class="form-control form-control-lg"
+                  data-testid="signUp-email"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                />
+              </fieldset>
+               
+              <fieldset
+                class="form-group"
+              >
+                <input
+                  class="form-control form-control-lg"
+                  data-testid="signUp-password"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                />
+              </fieldset>
+               
+              <button
+                class="btn btn-lg btn-primary pull-xs-right"
+              >
+                Sign in
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--&lt;SignUp_SignIn&gt;-->
+  </div>
+</body>
+`;
+
+exports[`SignUp_SignIn Component > Sign Up: should render the component 1`] = `
+<body>
+  <div>
+    <div
+      class="auth-page"
+    >
+      <div
+        class="container page"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6 offset-md-3 col-xs-12"
+          >
+            <h1
+              class="text-xs-center"
+              data-testid="signInUp-title"
+            >
+              Sign up
+            </h1>
+             
+            <p
+              class="text-xs-center"
+            >
+              <a
+                data-testid="signInUp-switch"
+                href="/sign-in"
+              >
+                Already have an account?
+              </a>
+            </p>
+             
+             
+            <form
+              method="POST"
+            >
+              <fieldset
+                class="form-group"
+              >
+                <input
+                  class="form-control form-control-lg"
+                  data-testid="signUp-name"
+                  name="username"
+                  placeholder="Your Name"
+                  type="text"
+                />
+              </fieldset>
+               
+              <fieldset
+                class="form-group"
+              >
+                <input
+                  class="form-control form-control-lg"
+                  data-testid="signUp-email"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                />
+              </fieldset>
+               
+              <fieldset
+                class="form-group"
+              >
+                <input
+                  class="form-control form-control-lg"
+                  data-testid="signUp-password"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                />
+              </fieldset>
+               
+              <button
+                class="btn btn-lg btn-primary pull-xs-right"
+              >
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--&lt;SignUp_SignIn&gt;-->
+  </div>
+</body>
+`;
