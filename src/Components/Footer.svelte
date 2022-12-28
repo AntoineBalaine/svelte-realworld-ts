@@ -1,4 +1,4 @@
-<footer>
+<footer data-testid="footer-component">
 	<div class="container">
 		<a href="/" class="logo-font">conduit</a>
 		<span class="attribution">
