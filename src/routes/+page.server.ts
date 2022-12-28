@@ -1,7 +1,7 @@
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 import * as api from "$lib/ApiHelpers";
 import { PAGE_SIZE } from "$lib/Constants";
-import type { ServerLoadEvent } from "@sveltejs/kit";
+import { redirect, type Actions, type ServerLoadEvent } from "@sveltejs/kit";
 import type * as ApiTypes from "../lib/ApiTypes";
 
 export const load = async ({ locals, url }: ServerLoadEvent) => {
@@ -31,4 +31,12 @@ export const load = async ({ locals, url }: ServerLoadEvent) => {
 		pageNumber,
 		user: locals.user
 	};
+};
+export const actions: Actions = {
+	logout: async ({ cookies, locals }) => {
+		console.log("sign out called");
+		cookies.delete("jwt", { path: "/" });
+		locals.user = null;
+		throw redirect(307, "/");
+	}
 };

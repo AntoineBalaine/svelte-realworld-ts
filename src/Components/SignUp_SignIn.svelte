@@ -44,7 +44,7 @@
 					</ul>
 				{/if}
 
-				<form method="POST" use:enhance>
+				<form method="POST">
 					{#if SignInUp_prop === SignIn_Up_Alternatives.SignUp}
 						<fieldset class="form-group">
 							<input

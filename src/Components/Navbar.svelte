@@ -14,11 +14,15 @@
 		<a class="navbar-brand" data-testid="TitleNav" href="/">conduit</a>
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
-				<!-- Add "active" class when you're on that page" -->
+				<!-- 
+					Known bug: trying to navigate back to homepage from any of the nav links
+					doesn’t work. 
+				-->
 				<a
 					class="nav-link active"
 					data-testid="HomeNav"
 					class:active={!route || route === "/"}
+					data-sveltekit-reload
 					href="/">Home</a
 				>
 			</li>
@@ -34,7 +38,15 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-testid="SignOutNav" href="/sign-out">Sign out</a>
+					<!-- 					
+					the data-sveltekit-reload here is meant to tell the browser to reload the page entirely
+					this will trigger the action and the clean up of the cookies
+					Having a dedicated path to sign out isn’t the cleanest option, 
+					but I couldn’t figure out another option that worked correctly from the navbar 
+					-->
+					<a class="nav-link" data-testid="SignOutNav" data-sveltekit-reload href="/sign-out"
+						>Sign out</a
+					>
 				</li>
 			{:else}
 				<li class="nav-item">
