@@ -12,10 +12,10 @@ export const load = async ({ params }: ServerLoadEvent) => {
 	if (article) {
 		return article;
 	} else {
-		article = await api.call<ApiTypes.components["schemas"]["Article"]>(
-			api.RestMethods.GET,
-			`${ENDPOINTS.ARTICLES}/${slug}`
-		);
-		return { article };
+		const incoming = await api.call<
+			ApiTypes.operations["GetArticle"]["responses"]["200"]["content"]["application/json"]
+		>(api.RestMethods.GET, `${ENDPOINTS.ARTICLES}/${slug}`);
+		article = incoming.article;
+		return article;
 	}
 };

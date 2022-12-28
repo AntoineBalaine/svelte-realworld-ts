@@ -8,7 +8,7 @@ export const load = async ({ parent }: ServerLoadEvent) => {
 	//redirect user to front page if already logged-in.
 	const parentData = await parent();
 	if (parentData["user" as keyof typeof parent]) {
-		throw redirect(307, "/");
+		throw redirect(303, "/");
 	}
 };
 export const actions: Actions = {
@@ -32,7 +32,7 @@ export const actions: Actions = {
 		} else {
 			requestEvent.cookies.set("jwt", JSON.stringify(response.user), { path: "/" });
 
-			throw redirect(307, "/");
+			throw redirect(303, "/");
 		}
 	}
 };

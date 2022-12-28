@@ -2,7 +2,7 @@ import { ENDPOINTS } from "$lib/ApiEndpoints";
 import * as api from "$lib/ApiHelpers";
 import { PAGE_SIZE } from "$lib/Constants";
 import { redirect, type Actions, type ServerLoadEvent } from "@sveltejs/kit";
-import type * as ApiTypes from "../lib/ApiTypes";
+import type * as ApiTypes from "$lib/ApiTypes";
 
 export const load = async ({ locals, url }: ServerLoadEvent) => {
 	// const tab = url.searchParams.get("tab") || "all";
@@ -34,9 +34,8 @@ export const load = async ({ locals, url }: ServerLoadEvent) => {
 };
 export const actions: Actions = {
 	logout: async ({ cookies, locals }) => {
-		console.log("sign out called");
 		cookies.delete("jwt", { path: "/" });
 		locals.user = null;
-		throw redirect(307, "/");
+		throw redirect(303, "/");
 	}
 };

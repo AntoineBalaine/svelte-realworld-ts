@@ -28,12 +28,22 @@
 			</li>
 			{#if user}
 				<li class="nav-item">
-					<a class="nav-link" data-testid="ArticleNav" href="/">
+					<a
+						class="nav-link"
+						data-testid="ArticleNav"
+						class:active={route === "/write"}
+						href="/write"
+					>
 						<i class="ion-compose" />&nbsp;New Article
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-testid="SettingsNav" href="/settings">
+					<a
+						class="nav-link"
+						data-testid="SettingsNav"
+						class:active={route === "/settings"}
+						href="/settings"
+					>
 						<i class="ion-gear-a" />&nbsp;Settings
 					</a>
 				</li>

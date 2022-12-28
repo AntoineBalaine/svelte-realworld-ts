@@ -7,7 +7,7 @@ import { redirect } from "@sveltejs/kit";
 export const load = async ({ parent }: ServerLoadEvent) => {
 	const parentData = await parent();
 	if (parentData["user" as keyof typeof parentData]) {
-		throw redirect(307, "/");
+		throw redirect(303, "/");
 	}
 	return;
 };
@@ -37,7 +37,7 @@ export const actions: Actions = {
 				requestEvent.cookies.set("jwt", stringUser, { path: "/" });
 			}
 
-			throw redirect(307, "/");
+			throw redirect(303, "/");
 		}
 	}
 };

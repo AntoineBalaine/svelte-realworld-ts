@@ -14,7 +14,7 @@ export const actions: Actions = {
 	logout: async ({ cookies, locals }) => {
 		cookies.delete("jwt", { path: "/" });
 		locals.user = null;
-		throw redirect(307, "/");
+		throw redirect(303, "/");
 	},
 	save: async ({ request, locals, cookies }) => {
 		const formData = await request.formData();
@@ -30,9 +30,9 @@ export const actions: Actions = {
 			};
 
 		const response = await api.call<
-			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["200"]
+			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["200"]["content"]["application/json"]
 			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["401"]
-			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["422"]
+			| ApiTypes.operations["UpdateCurrentUser"]["responses"]["422"]["content"]["application/json"]
 		>(api.RestMethods.PUT, `${ENDPOINTS.USER}`, JSON.stringify(requestJson), locals.user?.token);
 
 		if ("errors" in response) {
@@ -42,7 +42,7 @@ export const actions: Actions = {
 			if (stringUser) {
 				cookies.set("jwt", stringUser, { path: "/" });
 			}
-			throw redirect(307, "/");
+			throw redirect(303, "/");
 		} else return { errors: response };
 	}
 };
