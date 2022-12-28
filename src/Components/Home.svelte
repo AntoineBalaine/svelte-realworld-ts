@@ -31,7 +31,7 @@
 							</li>
 						{:else}
 							<li class="nav-item">
-								<a href="/login" class="nav-link">Sign in to see your Feed</a>
+								<a href="/sign-in" class="nav-link">Sign in to see your Feed</a>
 							</li>
 						{/if}
 						{#if tag}
