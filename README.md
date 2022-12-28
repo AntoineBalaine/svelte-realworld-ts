@@ -23,3 +23,21 @@ To build and start in prod mode:
 npm run build
 npm run preview
 ```
+## Todo:
+
+- [X] Article List
+- [X] Article Content
+- [ ] Article Comments
+- [X] Login
+- [X] Register
+- [X] Profile View
+- [X] Profile Edit
+- [X] Tag Cloud
+- [X] Articles for Tag
+- [ ] Favourite Article
+- [ ] Follow Author
+- [ ] Create Article
+- [ ] Update Article
+- [ ] Delete Article
+- [ ] Comment on Article
+- [ ] Delete Comment
