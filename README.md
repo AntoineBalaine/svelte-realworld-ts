@@ -26,6 +26,7 @@ npm run preview
 
 ## Todo:
 
+- [ ] Fix `follow/favorite actions` (refactor into separate form component)
 - [x] Article List
 - [x] Article Content
 - [ ] Article Comments
@@ -35,7 +36,7 @@ npm run preview
 - [x] Profile Edit
 - [x] Tag Cloud
 - [x] Articles for Tag
-- [ ] Favourite Article
+- [x] Favourite Article
 - [x] Follow Author
 - [x] Create Article
 - [ ] Update Article
