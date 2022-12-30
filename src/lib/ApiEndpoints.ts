@@ -10,6 +10,7 @@ type Paths = keyof ApiTypes.paths;
  */
 export const ENDPOINTS = {
 	ARTICLES: <Paths>"/articles",
+	ARTICLES_FAVORITE: <Paths>"/articles/{slug}/favorite",
 	TAGS: <Paths>"/tags",
 	USER: <Paths>"/user",
 	PROFILE: <Paths>"/profiles/{username}",
