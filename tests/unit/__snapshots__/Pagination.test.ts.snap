@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`VerticalTabs Component > should render the component 1`] = `
+exports[`Pagination Component > should render the component 1`] = `
 <body>
   <div>
     <nav

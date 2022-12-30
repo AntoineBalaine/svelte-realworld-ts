@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`VerticalTabs Component > should render the component 1`] = `
+exports[`Navbar Component > should render the component 1`] = `
 <body>
   <div>
     <nav
@@ -25,6 +25,7 @@ exports[`VerticalTabs Component > should render the component 1`] = `
           >
             <a
               class="nav-link active"
+              data-sveltekit-reload=""
               data-testid="HomeNav"
               href="/"
             >

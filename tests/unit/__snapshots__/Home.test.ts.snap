@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`VerticalTabs Component > should render the component 1`] = `
+exports[`Home Component > should render the component 1`] = `
 <body>
   <div>
     <div
@@ -55,7 +55,7 @@ exports[`VerticalTabs Component > should render the component 1`] = `
                 >
                   <a
                     class="nav-link"
-                    href="/login"
+                    href="/sign-in"
                   >
                     Sign in to see your Feed
                   </a>

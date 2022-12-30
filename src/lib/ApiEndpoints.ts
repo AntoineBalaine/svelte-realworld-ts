@@ -13,6 +13,7 @@ export const ENDPOINTS = {
 	TAGS: <Paths>"/tags",
 	USER: <Paths>"/user",
 	PROFILE: <Paths>"/profiles/{username}",
+	FOLLOW: <Paths>"/profiles/{username}/follow",
 	CREATE_USER: <Paths>"users",
 	LOGIN: <Paths>"/users/login"
 };
