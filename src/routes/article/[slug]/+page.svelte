@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
 	import type { PageData } from "./$types";
 	export let data: PageData;
 
-	const { author, updatedAt, favoritesCount, title, body, description } = data;
+	const { author, updatedAt, title, body, description } = data;
+	let { favoritesCount, favorited } = data;
 </script>
 
 <div class="article-page">
@@ -18,13 +20,40 @@
 				</div>
 				<button class="btn btn-sm btn-outline-secondary">
 					<i class="ion-plus-round" />
-					&nbsp; Follow {author?.username} <span class="counter">({favoritesCount})</span>
+					&nbsp; Follow {author?.username}
 				</button>
 				&nbsp;&nbsp;
-				<button class="btn btn-sm btn-outline-primary">
-					<i class="ion-heart" />
-					&nbsp; Favorite Post <span class="counter">({favoritesCount})</span>
-				</button>
+				<form
+					method="POST"
+					action="/article/{data.slug}?/toggleFavorite"
+					class="btn"
+					use:enhance={({ form }) => {
+						favorited = !favorited;
+						favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
+						const button = form.querySelector("button");
+						if (button) {
+							button.disabled = true;
+						}
+						return (actionresult) => {
+							// un-disable the toggle
+							if (button) {
+								button.disabled = false;
+							}
+							const { result } = actionresult;
+							if (result.type !== "success") {
+								// if the form submission fails, reset the form to previous state
+								favorited = !favorited;
+								favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
+							}
+						};
+					}}
+				>
+					<input hidden type="checkbox" id="checkbox" name="favorited" bind:value={favorited} />
+					<button class="btn btn-sm btn-outline-primary">
+						<i class="ion-heart" />
+						&nbsp; Favorite Post <span class="counter">({favoritesCount})</span>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -54,10 +83,37 @@
 					&nbsp; Follow {author?.username}
 				</button>
 				&nbsp;
-				<button class="btn btn-sm btn-outline-primary">
-					<i class="ion-heart" />
-					&nbsp; Favorite Post <span class="counter">({favoritesCount})</span>
-				</button>
+				<form
+					method="POST"
+					action="/article/{data.slug}?/toggleFavorite"
+					class="btn"
+					use:enhance={({ form }) => {
+						favorited = !favorited;
+						favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
+						const button = form.querySelector("button");
+						if (button) {
+							button.disabled = true;
+						}
+						return (actionresult) => {
+							// un-disable the toggle
+							if (button) {
+								button.disabled = false;
+							}
+							const { result } = actionresult;
+							if (result.type !== "success") {
+								// if the form submission fails, reset the form to previous state
+								favorited = !favorited;
+								favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
+							}
+						};
+					}}
+				>
+					<input hidden type="checkbox" id="checkbox" name="favorited" bind:value={favorited} />
+					<button class="btn btn-sm btn-outline-primary">
+						<i class="ion-heart" />
+						&nbsp; Favorite Post <span class="counter">({favoritesCount})</span>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
