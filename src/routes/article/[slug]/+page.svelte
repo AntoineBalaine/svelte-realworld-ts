@@ -5,6 +5,7 @@
 
 	const { author, updatedAt, title, body, description } = data;
 	let { favoritesCount, favorited } = data;
+	let { following, username } = author;
 </script>
 
 <div class="article-page">
@@ -18,11 +19,53 @@
 					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
-				<button class="btn btn-sm btn-outline-secondary">
-					<i class="ion-plus-round" />
-					&nbsp; Follow {author?.username}
-				</button>
-				&nbsp;&nbsp;
+
+				{#if data.user}
+					<form
+						class="btn"
+						method="POST"
+						action="/profile?/togglefollow"
+						use:enhance={({ form }) => {
+							/**
+							 * disable the toggle button during the form submission
+							 */
+							following = !following;
+							const button = form.querySelector("button");
+							if (button) {
+								button.disabled = true;
+							}
+							/**
+							 * the returned value is a function that gets
+							 * called after the api call.
+							 * the function takes an ActionResult
+							 */
+							return (actionresult) => {
+								// un-disable the toggle
+								if (button) {
+									button.disabled = false;
+								}
+								const { result } = actionresult;
+								if (result.type !== "success") {
+									// if the form submission fails, reset the form to previous state
+									following = !following;
+								}
+							};
+						}}
+					>
+						<input hidden type="checkbox" id="checkbox" name="following" bind:value={following} />
+						<button class="btn btn-sm btn-outline-secondary action-btn">
+							<i class="ion-plus-round" />
+							&nbsp; {following ? "Unfollow" : "Follow"}
+							{username}
+						</button>
+					</form>
+				{:else}
+					<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
+						<i class="ion-plus-round" />
+						&nbsp; Follow
+						{username}
+					</a>
+				{/if}
 				<form
 					method="POST"
 					action="/article/{data.slug}?/toggleFavorite"

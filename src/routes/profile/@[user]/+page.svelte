@@ -61,6 +61,12 @@
 								{profile.username}
 							</button>
 						</form>
+					{:else}
+						<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
+							<i class="ion-plus-round" />
+							&nbsp; Follow
+							{profile.username}
+						</a>
 					{/if}
 				</div>
 			</div>
