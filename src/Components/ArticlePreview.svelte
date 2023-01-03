@@ -28,9 +28,6 @@
 					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
 				</div>
 			{/if}
-			<div class="primary pull-xs-right">
-				<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
-			</div>
 		{/if}
 	</div>
 	<a href="/article/{slug}" class="preview-link">
