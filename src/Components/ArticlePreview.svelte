@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
+	import Form_Favorites from "$Components/Form_Favorites.svelte";
 	import type * as ApiTypes from "$lib/ApiTypes";
 	export let article: ApiTypes.components["schemas"]["Article"];
 	const { author, updatedAt, tagList, title, description, slug } = article;
 	let { favoritesCount, favorited } = article;
+	export let user: import("$lib/ApiTypes").components["schemas"]["User"] | null = null;
 </script>
 
 <div class="article-preview">
@@ -15,36 +16,11 @@
 			>
 			<span data-testid="author-updatedAt" class="date">{updatedAt}</span>
 		</div>
-		<form
-			method="POST"
-			action="/article/{article.slug}?/toggleFavorite"
-			use:enhance={({ form }) => {
-				favorited = !favorited;
-				favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
-				const button = form.querySelector("button");
-				if (button) {
-					button.disabled = true;
-				}
-				return (actionresult) => {
-					// un-disable the toggle
-					if (button) {
-						button.disabled = false;
-					}
-					const { result } = actionresult;
-					if (result.type !== "success") {
-						// if the form submission fails, reset the form to previous state
-						favorited = !favorited;
-						favorited ? (favoritesCount += 1) : (favoritesCount -= 1);
-					}
-				};
-			}}
-		>
-			<input hidden type="checkbox" id="checkbox" name="favorited" bind:value={favorited} />
-			<button class="btn btn-outline-primary btn-sm pull-xs-right">
-				<i class="ion-heart" />
-				{favoritesCount}
-			</button>
-		</form>
+		{#if user}
+			<div class="primary pull-xs-right">
+				<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
+			</div>
+		{/if}
 	</div>
 	<a href="/article/{slug}" class="preview-link">
 		<h1 data-testid="article-title">{title}</h1>

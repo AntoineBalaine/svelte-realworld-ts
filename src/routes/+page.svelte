@@ -28,7 +28,7 @@
 {/if}
 <Home {data}>
 	{#each articles as article}
-		<ArticlePreview {article} />
+		<ArticlePreview {article} user={data.user} />
 	{/each}
 	<Pagination />
 </Home>

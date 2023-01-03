@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
 	import ArticlePreview from "$Components/ArticlePreview.svelte";
+	import FormFollow from "$Components/Form_Follow.svelte";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
 	let { profile } = data.author;
+	let { following, username } = profile;
 </script>
 
 <div class="profile-page">
@@ -18,54 +19,12 @@
 						{profile.bio || ""}
 					</p>
 					{#if data.user}
-						<form
-							method="POST"
-							action="?/togglefollow"
-							use:enhance={({ form }) => {
-								/**
-								 * disable the toggle button during the form submission
-								 */
-								profile.following = !profile.following;
-								const button = form.querySelector("button");
-								if (button) {
-									button.disabled = true;
-								}
-								/**
-								 * the returned value is a function that gets
-								 * called after the api call.
-								 * the function takes an ActionResult
-								 */
-								return (actionresult) => {
-									// un-disable the toggle
-									if (button) {
-										button.disabled = false;
-									}
-									const { result } = actionresult;
-									if (result.type !== "success") {
-										// if the form submission fails, reset the form to previous state
-										profile.following = !profile.following;
-									}
-								};
-							}}
-						>
-							<input
-								hidden
-								type="checkbox"
-								id="checkbox"
-								name="following"
-								bind:value={profile.following}
-							/>
-							<button class="btn btn-sm btn-outline-secondary action-btn">
-								<i class="ion-plus-round" />
-								&nbsp; {profile.following ? "Unfollow" : "Follow"}
-								{profile.username}
-							</button>
-						</form>
+						<FormFollow {following} {username} />
 					{:else}
 						<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
 							<i class="ion-plus-round" />
 							&nbsp; Follow
-							{profile.username}
+							{username}
 						</a>
 					{/if}
 				</div>
@@ -91,7 +50,7 @@
 					</ul>
 				</div>
 				{#each data.articles.articles as article}
-					<ArticlePreview {article} />
+					<ArticlePreview {article} user={data.user} />
 				{/each}
 			</div>
 		</div>
