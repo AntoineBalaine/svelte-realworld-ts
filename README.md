@@ -28,7 +28,7 @@ npm run preview
 
 - [x] Article List
 - [x] Article Content
-- [ ] Article Comments
+- [x] Article Comments
 - [x] Login
 - [x] Register
 - [x] Profile View
