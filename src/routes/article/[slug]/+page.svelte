@@ -62,7 +62,7 @@
 						<span class="date">{updatedAt}</span>
 					</div>
 
-					<FormFollow {following} {username} />
+					<FormFollow {following} {username} {user} />
 					&nbsp;
 					<Form_Favorites {favorited} {favoritesCount} data={data.articleData} />
 				</div>
