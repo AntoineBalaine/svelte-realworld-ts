@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import type ApiTypes from "$lib/ApiTypes";
-	import type { TextEditorActions } from "$lib/Types";
+	import { TextEditorActions } from "$lib/Types";
 	export let actionName: TextEditorActions;
 	export let article: ApiTypes.operations["CreateArticle"]["requestBody"]["content"]["application/json"]["article"] =
 		{
@@ -10,13 +10,19 @@
 			body: "",
 			tagList: [""]
 		};
+	import { page } from "$app/stores";
+
+	const actionPath =
+		actionName === TextEditorActions.update
+			? `/write/${$page.params.slug}?/${actionName}`
+			: `/write?/{actionName}`;
 </script>
 
 <div class="editor-page">
 	<div class="container page">
 		<div class="row">
 			<div class="col-md-10 offset-md-1 col-xs-12">
-				<form method="POST" use:enhance action="?/{actionName}">
+				<form method="POST" use:enhance action={actionPath}>
 					<fieldset>
 						<fieldset class="form-group">
 							<input
@@ -24,7 +30,7 @@
 								class="form-control form-control-lg"
 								placeholder="Article Title"
 								name="title"
-								value={article.title}
+								bind:value={article.title}
 							/>
 						</fieldset>
 						<fieldset class="form-group">
@@ -33,7 +39,7 @@
 								class="form-control"
 								placeholder="What's this article about?"
 								name="description"
-								value={article.description}
+								bind:value={article.description}
 							/>
 						</fieldset>
 						<fieldset class="form-group">
@@ -42,7 +48,7 @@
 								rows="8"
 								placeholder="Write your article (in markdown)"
 								name="body"
-								value={article.body}
+								bind:value={article.body}
 							/>
 						</fieldset>
 						<fieldset class="form-group">

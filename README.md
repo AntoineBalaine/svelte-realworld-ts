@@ -38,7 +38,7 @@ npm run preview
 - [x] Favourite Article
 - [x] Follow Author
 - [x] Create Article
-- [ ] Update Article
+- [x] Update Article
 - [x] Delete Article
 - [ ] Comment on Article
 - [ ] Delete Comment

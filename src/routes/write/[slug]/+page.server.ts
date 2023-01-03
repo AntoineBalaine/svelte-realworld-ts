@@ -13,7 +13,7 @@ export const load = async ({ params }: ServerLoadEvent) => {
 };
 
 export const actions: Actions = {
-	updatearticle: async ({ request, locals }) => {
+	updatearticle: async ({ request, locals, params }) => {
 		const formData = await request.formData();
 		const requestJson: ApiTypes.operations["CreateArticle"]["requestBody"]["content"]["application/json"] =
 			{
@@ -31,7 +31,7 @@ export const actions: Actions = {
 			| ApiTypes.operations["CreateArticle"]["responses"]["422"]["content"]["application/json"]
 		>(
 			api.RestMethods.PUT,
-			`${ENDPOINTS.ARTICLES}`,
+			`${ENDPOINTS.ARTICLES}/${params.slug}`,
 			JSON.stringify(requestJson),
 			locals.user?.token
 		);
@@ -39,7 +39,7 @@ export const actions: Actions = {
 		if ("errors" in response) {
 			return response;
 		} else if ("article" in response) {
-			throw redirect(303, `/${response.article.slug}`);
+			throw redirect(303, `/article/${response.article.slug}`);
 		} else return { errors: response };
 	}
 };
