@@ -7,6 +7,7 @@
 
 	const { author, updatedAt, title, body, description, slug } = data;
 	let { favoritesCount, favorited } = data;
+	let { user } = data;
 	let { following, username } = author;
 </script>
 
@@ -22,7 +23,7 @@
 					<span class="date">{updatedAt}</span>
 				</div>
 				{#if !data.user || (data.user && data.user.username !== author.username)}
-					<FormFollow {following} {username} />
+					<FormFollow {following} {username} {user} />
 					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
 				{:else}
 					<div class="row" style="margin-top: 10px;">

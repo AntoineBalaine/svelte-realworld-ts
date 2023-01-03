@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Form_Follow from "./Form_Follow.svelte";
 	import Form_Favorites from "$Components/Form_Favorites.svelte";
 	import type * as ApiTypes from "$lib/ApiTypes";
-	import { data } from "$store";
 	import ButtonsEditDelete from "./Buttons_Edit_Delete.svelte";
 	export let article: ApiTypes.components["schemas"]["Article"];
 	const { author, updatedAt, tagList, title, description, slug } = article;
@@ -26,6 +26,7 @@
 			{:else}
 				<div class="primary pull-xs-right">
 					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
+					<Form_Follow following={author.following} username={author.username} {user} />
 				</div>
 			{/if}
 		{/if}

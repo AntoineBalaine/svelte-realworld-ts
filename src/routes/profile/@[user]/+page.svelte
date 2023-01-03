@@ -60,7 +60,7 @@
 					</ul>
 				</div>
 				{#each data.articles.articles as article}
-					<ArticlePreview {article} user={data.user} />
+					<ArticlePreview {article} {user} />
 				{/each}
 			</div>
 		</div>
