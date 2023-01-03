@@ -5,11 +5,29 @@ import * as api from "$lib/ApiHelpers";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
 import type ApiTypes from "$lib/ApiTypes";
 
-export const load = async ({ params }: ServerLoadEvent) => {
+export const load = async ({ params, locals }: ServerLoadEvent) => {
 	const slug = params.slug;
 	let articlesList = Array<ApiTypes.components["schemas"]["Article"]>();
 	store.subscribe((data) => (articlesList = data.articles));
-	return await getArticle(slug, articlesList);
+	return {
+		articleData: await getArticle(slug, articlesList),
+		comments: await api
+			.call<
+				| ApiTypes.operations["GetArticleComments"]["responses"]["200"]["content"]["application/json"]
+				| ApiTypes.operations["GetArticleComments"]["responses"]["422"]["content"]["application/json"]
+				| ApiTypes.operations["GetArticleComments"]["responses"]["401"]["content"]
+			>(
+				api.RestMethods.GET,
+				ENDPOINTS.COMMENTS.replace(/{slug}/, slug || ""),
+				"{}",
+				locals.user?.token
+			)
+			.then((response) => {
+				if ("comments" in response) {
+					return response.comments;
+				} else return [];
+			})
+	};
 };
 
 export const actions: Actions = {
@@ -57,5 +75,21 @@ export const actions: Actions = {
 				status: 422
 			};
 		} else throw redirect(307, "/");
+	},
+	addComment: async ({ params }): Promise<ActionResult> => {
+		const response = await api.call<
+			ApiTypes.operations["CreateArticleComment"]["responses"]["200"]["content"]["application/json"]
+		>(api.RestMethods.POST, ENDPOINTS.COMMENTS.replace(/{slug}/, params.slug || ""));
+		if ("comment" in response) {
+			return {
+				type: "success",
+				status: 200
+			};
+		} else {
+			return {
+				type: "failure",
+				status: 422
+			};
+		}
 	}
 };

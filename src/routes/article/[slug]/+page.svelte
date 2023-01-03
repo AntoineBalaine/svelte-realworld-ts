@@ -3,11 +3,14 @@
 	import type { PageData } from "./$types";
 	import FormFollow from "$Components/Form_Follow.svelte";
 	import ButtonsEditDelete from "$Components/Buttons_Edit_Delete.svelte";
+	import CommentCard from "$Components/CommentCard.svelte";
+	import CommentInput from "$Components/CommentInput.svelte";
 	export let data: PageData;
 
-	const { author, updatedAt, title, body, description, slug } = data;
-	let { favoritesCount, favorited } = data;
 	let { user } = data;
+	let comments = data.comments;
+	const { author, updatedAt, title, body, description, slug } = data.articleData;
+	let { favoritesCount, favorited } = data.articleData;
 	let { following, username } = author;
 </script>
 
@@ -22,6 +25,7 @@
 					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
+
 				{#if !data.user || (data.user && data.user.username !== author.username)}
 					<FormFollow {following} {username} {user} />
 					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
@@ -45,7 +49,10 @@
 		</div>
 
 		<hr />
-
+		<CommentInput {slug} {user} />
+		{#each comments as comment}
+			<CommentCard {comment} />
+		{/each}
 		{#if !data.user || (data.user && data.user.username !== author.username)}
 			<div class="article-actions">
 				<div class="article-meta">
@@ -57,7 +64,7 @@
 
 					<FormFollow {following} {username} />
 					&nbsp;
-					<Form_Favorites {favorited} {favoritesCount} {data} />
+					<Form_Favorites {favorited} {favoritesCount} data={data.articleData} />
 				</div>
 			</div>
 		{/if}
