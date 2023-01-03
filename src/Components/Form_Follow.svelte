@@ -17,7 +17,7 @@
 	<form
 		class="btn"
 		method="POST"
-		action="/profile?/togglefollow"
+		action="/profile/@{username}?/togglefollow"
 		use:enhance={({ form }) => {
 			/**
 			 * disable the toggle button during the form submission

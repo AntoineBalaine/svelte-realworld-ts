@@ -26,7 +26,6 @@ npm run preview
 
 ## Todo:
 
-- [x] Fix `follow/favorite actions` (refactor into separate form component)
 - [x] Article List
 - [x] Article Content
 - [ ] Article Comments
@@ -40,7 +39,7 @@ npm run preview
 - [x] Follow Author
 - [x] Create Article
 - [ ] Update Article
-- [ ] Delete Article
+- [x] Delete Article
 - [ ] Comment on Article
 - [ ] Delete Comment
 - [ ] Custom feed

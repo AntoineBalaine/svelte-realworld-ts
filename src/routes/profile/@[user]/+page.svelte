@@ -6,6 +6,7 @@
 	export let data: PageData;
 	let { profile } = data.author;
 	let { following, username } = profile;
+	let { user } = data;
 </script>
 
 <div class="profile-page">
@@ -27,7 +28,7 @@
 								</button>
 							</a>
 						{:else}
-							<FormFollow {following} {username} />
+							<FormFollow {following} {username} {user} />
 						{/if}
 					{:else}
 						<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
