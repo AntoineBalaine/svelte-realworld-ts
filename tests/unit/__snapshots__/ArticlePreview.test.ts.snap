@@ -37,28 +37,6 @@ exports[`ArticlePreview Component > should render the component 1`] = `
           </span>
         </div>
          
-        <form
-          action="/article/thething?/toggleFavorite"
-          method="POST"
-        >
-          <input
-            hidden=""
-            id="checkbox"
-            name="favorited"
-            type="checkbox"
-            value="false"
-          />
-           
-          <button
-            class="btn btn-outline-primary btn-sm pull-xs-right"
-          >
-            <i
-              class="ion-heart"
-            />
-             
-            55
-          </button>
-        </form>
       </div>
        
       <a
