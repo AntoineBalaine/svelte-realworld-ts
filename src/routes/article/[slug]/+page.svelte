@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Form_Favorites from "$Components/Form_Favorites.svelte";
-	import { enhance } from "$app/forms";
 	import type { PageData } from "./$types";
 	import FormFollow from "$Components/Form_Follow.svelte";
+	import ButtonsEditDelete from "$Components/Buttons_Edit_Delete.svelte";
 	export let data: PageData;
 
-	const { author, updatedAt, title, body, description } = data;
+	const { author, updatedAt, title, body, description, slug } = data;
 	let { favoritesCount, favorited } = data;
 	let { following, username } = author;
 </script>
@@ -21,17 +21,14 @@
 					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
 					<span class="date">{updatedAt}</span>
 				</div>
-
-				{#if data.user}
+				{#if !data.user || (data.user && data.user.username !== author.username)}
 					<FormFollow {following} {username} />
+					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
 				{:else}
-					<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
-						<i class="ion-plus-round" />
-						&nbsp; Follow
-						{username}
-					</a>
+					<div class="row" style="margin-top: 10px;">
+						<ButtonsEditDelete {slug} />
+					</div>
 				{/if}
-				<Form_Favorites {favorited} {favoritesCount} {data} />
 			</div>
 		</div>
 	</div>
@@ -48,18 +45,20 @@
 
 		<hr />
 
-		<div class="article-actions">
-			<div class="article-meta">
-				<a href="profile.html"><img src={author?.image} alt="author profile" /></a>
-				<div class="info">
-					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
-					<span class="date">{updatedAt}</span>
-				</div>
+		{#if !data.user || (data.user && data.user.username !== author.username)}
+			<div class="article-actions">
+				<div class="article-meta">
+					<a href="profile.html"><img src={author?.image} alt="author profile" /></a>
+					<div class="info">
+						<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
+						<span class="date">{updatedAt}</span>
+					</div>
 
-				<FormFollow {following} {username} />
-				&nbsp;
-				<Form_Favorites {favorited} {favoritesCount} {data} />
+					<FormFollow {following} {username} />
+					&nbsp;
+					<Form_Favorites {favorited} {favoritesCount} {data} />
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 </div>

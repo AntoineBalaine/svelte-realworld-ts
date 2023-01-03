@@ -19,7 +19,16 @@
 						{profile.bio || ""}
 					</p>
 					{#if data.user}
-						<FormFollow {following} {username} />
+						{#if data.user.username === profile.username}
+							<a href="/settings">
+								<button class="btn btn-sm btn-outline-secondary action-btn">
+									<i class="ion-gear-a" />
+									&nbsp; Edit Profile Settings
+								</button>
+							</a>
+						{:else}
+							<FormFollow {following} {username} />
+						{/if}
 					{:else}
 						<a href="/sign-in" class="btn btn-sm btn-outline-secondary action-btn">
 							<i class="ion-plus-round" />

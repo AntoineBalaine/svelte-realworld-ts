@@ -1,5 +1,5 @@
 import { store } from "$store";
-import type { ActionResult, Actions, ServerLoadEvent } from "@sveltejs/kit";
+import { redirect, type ActionResult, type Actions, type ServerLoadEvent } from "@sveltejs/kit";
 import { getArticle } from "$lib/ApiHelpers";
 import * as api from "$lib/ApiHelpers";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
@@ -43,5 +43,19 @@ export const actions: Actions = {
 				type: "failure",
 				status: 401
 			};
+	},
+	deleteArticle: async ({ locals, params }): Promise<ActionResult> => {
+		const response = await api.call<
+			| ApiTypes.operations["DeleteArticle"]["responses"]["200"]["content"]
+			| ApiTypes.operations["DeleteArticle"]["responses"]["401"]["content"]
+			| ApiTypes.operations["DeleteArticle"]["responses"]["422"]["content"]["application/json"]
+		>(api.RestMethods.DELETE, `${ENDPOINTS.ARTICLES}/${params.slug}`, "{}", locals.user?.token);
+
+		if ("errors" in response) {
+			return {
+				type: "failure",
+				status: 422
+			};
+		} else throw redirect(307, "/");
 	}
 };

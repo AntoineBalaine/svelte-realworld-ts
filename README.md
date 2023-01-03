@@ -26,7 +26,7 @@ npm run preview
 
 ## Todo:
 
-- [ ] Fix `follow/favorite actions` (refactor into separate form component)
+- [x] Fix `follow/favorite actions` (refactor into separate form component)
 - [x] Article List
 - [x] Article Content
 - [ ] Article Comments

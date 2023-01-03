@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Form_Favorites from "$Components/Form_Favorites.svelte";
 	import type * as ApiTypes from "$lib/ApiTypes";
+	import { data } from "$store";
+	import ButtonsEditDelete from "./Buttons_Edit_Delete.svelte";
 	export let article: ApiTypes.components["schemas"]["Article"];
 	const { author, updatedAt, tagList, title, description, slug } = article;
 	let { favoritesCount, favorited } = article;
@@ -17,6 +19,15 @@
 			<span data-testid="author-updatedAt" class="date">{updatedAt}</span>
 		</div>
 		{#if user}
+			{#if user && user.username === author.username}
+				<div class="row" style="margin-top: 10px;">
+					<ButtonsEditDelete {slug} />
+				</div>
+			{:else}
+				<div class="primary pull-xs-right">
+					<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
+				</div>
+			{/if}
 			<div class="primary pull-xs-right">
 				<Form_Favorites {favorited} {favoritesCount} data={{ slug }} />
 			</div>
