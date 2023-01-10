@@ -17,15 +17,10 @@
 		<a class="navbar-brand" data-testid="TitleNav" href="/">conduit</a>
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
-				<!-- 
-					Known bug: trying to navigate back to homepage from any of the nav links
-					doesn’t work. 
-				-->
 				<a
 					class="nav-link active"
 					data-testid="HomeNav"
 					class:active={!route || route === "/"}
-					data-sveltekit-reload
 					href="/">Home</a
 				>
 			</li>
