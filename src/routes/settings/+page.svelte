@@ -70,7 +70,7 @@
 					</fieldset>
 				</form>
 				<hr />
-				<form use:enhance action="?/logout">
+				<form method="POST" use:enhance action="?/logout">
 					<button class="btn btn-outline-danger">Or click here to logout.</button>
 				</form>
 			</div>
