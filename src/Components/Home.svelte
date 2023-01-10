@@ -2,6 +2,7 @@
 	import type { PageData } from "../routes/$types";
 	export let data: PageData;
 	import { page } from "$app/stores";
+	import { enhance } from "$app/forms";
 
 	$: tag = $page.url.searchParams.get("tag");
 	$: tab = $page.url.searchParams.get("tab");
@@ -21,13 +22,18 @@
 				<div class="feed-toggle">
 					<ul class="nav nav-pills outline-active">
 						<li class="nav-item">
-							<a class="nav-link" class:active={(tab === "all" || !tab) && !tag} href="/"
-								>Global Feed</a
+							<a
+								class="nav-link"
+								rel="external"
+								class:active={(tab === "all" || !tab) && !tag}
+								href="/">Global Feed</a
 							>
 						</li>
 						{#if data.user}
 							<li class="nav-item">
-								<a href="/?tab=feed" class="nav-link" class:active={tab === "feed"}>Your Feed</a>
+								<a href="/?tab=feed" rel="external" class="nav-link" class:active={tab === "feed"}
+									>Your Feed</a
+								>
 							</li>
 						{:else}
 							<li class="nav-item">

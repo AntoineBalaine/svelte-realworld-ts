@@ -5,9 +5,9 @@ import { redirect, type Actions, type ServerLoadEvent } from "@sveltejs/kit";
 import type * as ApiTypes from "$lib/ApiTypes";
 
 export const load = async ({ locals, url }: ServerLoadEvent) => {
-	// const tab = url.searchParams.get("tab") || "all";
 	const tag = url.searchParams.get("tag");
 	const pageNumber = +(url.searchParams.get("page") ?? "1");
+	const tab = url.searchParams.get("tab") || "all";
 
 	const searchParams = new URLSearchParams();
 
@@ -20,13 +20,18 @@ export const load = async ({ locals, url }: ServerLoadEvent) => {
 	// Consumer
 	const { articles, articlesCount } = await api.call<
 		ApiTypes.components["responses"]["MultipleArticlesResponse"]["content"]["application/json"]
-	>(api.RestMethods.GET, ENDPOINTS.ARTICLES);
-
+	>(
+		api.RestMethods.GET,
+		tab === "feed" ? ENDPOINTS.FEED : ENDPOINTS.ARTICLES,
+		"{}",
+		locals.user?.token
+	);
+	tab === "feed" ? ENDPOINTS.FEED : ENDPOINTS.ARTICLES && console.log("tab", tab);
 	return {
 		articles,
 		pages: Math.ceil(articlesCount || 10 / PAGE_SIZE),
 		tags: (async (): Promise<{ tags: Array<string> }> =>
-			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS))(),
+			await api.call(api.RestMethods.GET, ENDPOINTS.TAGS, "{}", locals.user?.token))(),
 		isLoggedIn: false,
 		pageNumber,
 		user: locals.user
