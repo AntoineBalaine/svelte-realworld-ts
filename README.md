@@ -40,6 +40,6 @@ npm run preview
 - [x] Create Article
 - [x] Update Article
 - [x] Delete Article
-- [ ] Comment on Article
+- [x] Comment on Article 
 - [ ] Delete Comment
-- [ ] Custom feed
+- [x] Custom feed
