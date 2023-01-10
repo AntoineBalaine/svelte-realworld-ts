@@ -26,7 +26,6 @@ export const load = async ({ locals, url }: ServerLoadEvent) => {
 		"{}",
 		locals.user?.token
 	);
-	tab === "feed" ? ENDPOINTS.FEED : ENDPOINTS.ARTICLES && console.log("tab", tab);
 	return {
 		articles,
 		pages: Math.ceil(articlesCount || 10 / PAGE_SIZE),

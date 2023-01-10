@@ -38,7 +38,7 @@
 		<ul class="tag-list">
 			{#each tagList as tag}
 				<li>
-					<a href="/?tag={tag}" class="tag-pill tag-default tag-outline">{tag}</a>
+					<a href="/?tag={tag}" rel="external" class="tag-pill tag-default tag-outline">{tag}</a>
 				</li>
 			{/each}
 		</ul>

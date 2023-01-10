@@ -60,7 +60,11 @@
 
 					<div class="tag-list">
 						{#each data.tags.tags as tag}
-							<a href="/?tag={tag}" data-testid="homepage-tag" class="tag-pill tag-default">{tag}</a
+							<a
+								href="/?tag={tag}"
+								rel="external"
+								data-testid="homepage-tag"
+								class="tag-pill tag-default">{tag}</a
 							>
 						{/each}
 					</div>
