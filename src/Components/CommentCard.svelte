@@ -16,7 +16,7 @@
 				</a>
 				&nbsp;
 				<a href={null} class="comment-author">{author.username}</a>
-				<span class="date-posted">{updatedAt}</span>
+				<span class="date-posted">{new Date(updatedAt).toDateString()}</span>
 			</div>
 		</div>
 	</div>

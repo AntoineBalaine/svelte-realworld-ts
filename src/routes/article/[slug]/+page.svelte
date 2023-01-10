@@ -23,7 +23,7 @@
 				<a href="/profile/@{author?.username}"><img src={author?.image} alt="author profile" /></a>
 				<div class="info">
 					<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
-					<span class="date">{updatedAt}</span>
+					<span class="date">{new Date(updatedAt).toDateString()}</span>
 				</div>
 
 				{#if !data.user || (data.user && data.user.username !== author.username)}
@@ -59,7 +59,7 @@
 					<a href="profile.html"><img src={author?.image} alt="author profile" /></a>
 					<div class="info">
 						<a href="/profile/@{author?.username}" class="author">{author?.username}</a>
-						<span class="date">{updatedAt}</span>
+						<span class="date">{new Date(updatedAt).toDateString()}</span>
 					</div>
 
 					<FormFollow {following} {username} {user} />

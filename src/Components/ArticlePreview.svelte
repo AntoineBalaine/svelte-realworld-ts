@@ -16,7 +16,7 @@
 			<a href="/profile/@{author?.username}" data-testid="author-username" class="author"
 				>{author.username}</a
 			>
-			<span data-testid="author-updatedAt" class="date">{updatedAt}</span>
+			<span data-testid="author-updatedAt" class="date">{new Date(updatedAt).toDateString()}</span>
 		</div>
 		{#if user}
 			{#if user && user.username === author.username}
