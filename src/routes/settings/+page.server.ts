@@ -2,6 +2,7 @@ import { redirect, type Actions, type ServerLoadEvent } from "@sveltejs/kit";
 import type ApiTypes from "$lib/ApiTypes";
 import * as api from "$lib/ApiHelpers";
 import { ENDPOINTS } from "$lib/ApiEndpoints";
+import { dateFromNow } from "$lib/Helpers";
 
 export const load = async ({ locals }: ServerLoadEvent) => {
 	if (!locals.user) {
@@ -40,7 +41,7 @@ export const actions: Actions = {
 		} else if ("user" in response) {
 			const stringUser = JSON.stringify(response.user);
 			if (stringUser) {
-				cookies.set("jwt", stringUser, { path: "/" });
+				cookies.set("jwt", stringUser, { path: "/", expires: dateFromNow() });
 			}
 			throw redirect(303, "/");
 		} else return { errors: response };

@@ -3,6 +3,7 @@ import { ENDPOINTS } from "$lib/ApiEndpoints";
 import * as api from "$lib/ApiHelpers";
 import type ApiTypes from "$lib/ApiTypes";
 import { redirect } from "@sveltejs/kit";
+import { dateFromNow } from "$lib/Helpers";
 
 export const load = async ({ parent }: ServerLoadEvent) => {
 	const parentData = await parent();
@@ -34,7 +35,7 @@ export const actions: Actions = {
 		} else {
 			const stringUser = JSON.stringify(response.user);
 			if (stringUser) {
-				requestEvent.cookies.set("jwt", stringUser, { path: "/" });
+				requestEvent.cookies.set("jwt", stringUser, { path: "/", expires: dateFromNow() });
 			}
 
 			throw redirect(303, "/");

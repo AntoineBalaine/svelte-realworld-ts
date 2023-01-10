@@ -3,6 +3,7 @@ import type { Actions } from "./$types";
 import * as api from "$lib/ApiHelpers";
 import type ApiTypes from "$lib/ApiTypes";
 import { redirect, type ServerLoadEvent } from "@sveltejs/kit";
+import { dateFromNow } from "$lib/Helpers";
 
 export const load = async ({ parent }: ServerLoadEvent) => {
 	//redirect user to front page if already logged-in.
@@ -30,7 +31,10 @@ export const actions: Actions = {
 		if ("errors" in response) {
 			return response;
 		} else {
-			requestEvent.cookies.set("jwt", JSON.stringify(response.user), { path: "/" });
+			requestEvent.cookies.set("jwt", JSON.stringify(response.user), {
+				path: "/",
+				expires: dateFromNow()
+			});
 
 			throw redirect(303, "/");
 		}
