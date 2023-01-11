@@ -31,19 +31,19 @@ export const load = async ({ params, locals }: ServerLoadEvent) => {
 };
 
 export const actions: Actions = {
-	toggleFavorite: async ({ locals, params, request }): Promise<ActionResult> => {
+	toggleFavorite: async ({ locals, params, url }): Promise<ActionResult> => {
 		const articles: ApiTypes.operations["CreateArticleFavorite"]["parameters"]["path"]["slug"] =
 			params.slug || "";
-		const requestForm = await request.formData();
+		const favorited = url.searchParams.get("favorited") === "true";
 
 		const response = await api.call<
 			| ApiTypes.operations["CreateArticleFavorite"]["responses"]["200"]["content"]["application/json"]
 			| ApiTypes.operations["CreateArticleFavorite"]["responses"]["422"]["content"]["application/json"]
 			| ApiTypes.operations["CreateArticleFavorite"]["responses"]["401"]["content"]
 		>(
-			requestForm.get("favorited") ? api.RestMethods.DELETE : api.RestMethods.POST,
+			favorited ? api.RestMethods.DELETE : api.RestMethods.POST,
 			ENDPOINTS.ARTICLES_FAVORITE.replace(/{slug}/, articles || ""),
-			"",
+			"{}",
 			locals.user?.token
 		);
 		if ("errors" in response) {

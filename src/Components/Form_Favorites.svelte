@@ -8,7 +8,6 @@
 <form
 	style="padding: 0;"
 	method="POST"
-	action="/article/{data.slug}?/toggleFavorite"
 	class="btn"
 	use:enhance={({ form }) => {
 		favorited = !favorited;
@@ -31,8 +30,10 @@
 		};
 	}}
 >
-	<input hidden type="checkbox" id="checkbox" name="favorited" bind:value={favorited} />
-	<button class="btn btn-sm {favorited ? 'btn-primary' : 'btn-outline-primary'}">
+	<button
+		formaction="/article/{data.slug}?/toggleFavorite&favorited={favorited}"
+		class="btn btn-sm {favorited ? 'btn-primary' : 'btn-outline-primary'}"
+	>
 		<i class="ion-heart" />
 		<span class="counter">{favoritesCount}</span>
 	</button>

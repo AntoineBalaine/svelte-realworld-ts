@@ -28,19 +28,19 @@ export const load = async ({ params, url, locals }: ServerLoadEvent) => {
 };
 
 export const actions: Actions = {
-	togglefollow: async ({ locals, params, request }): Promise<ActionResult> => {
+	togglefollow: async ({ locals, params, url }): Promise<ActionResult> => {
 		const userToFollow: ApiTypes.operations["FollowUserByUsername"]["parameters"]["path"]["username"] =
 			params.user || "";
-		const requestForm = await request.formData();
+		const following = url.searchParams.get("following") === "true";
 
 		const response = await api.call<
 			| ApiTypes.operations["FollowUserByUsername"]["responses"]["200"]["content"]["application/json"]
 			| ApiTypes.operations["FollowUserByUsername"]["responses"]["422"]["content"]["application/json"]
 			| ApiTypes.operations["FollowUserByUsername"]["responses"]["401"]["content"]
 		>(
-			requestForm.get("following") ? api.RestMethods.DELETE : api.RestMethods.POST,
+			following ? api.RestMethods.DELETE : api.RestMethods.POST,
 			ENDPOINTS.FOLLOW.replace(/{username}/, userToFollow || ""),
-			"",
+			"{}",
 			locals.user?.token
 		);
 		if ("errors" in response) {

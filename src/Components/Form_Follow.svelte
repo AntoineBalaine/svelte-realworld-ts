@@ -17,7 +17,6 @@
 	<form
 		class="btn"
 		method="POST"
-		action="/profile/@{username}?/togglefollow"
 		use:enhance={({ form }) => {
 			/**
 			 * disable the toggle button during the form submission
@@ -45,8 +44,10 @@
 			};
 		}}
 	>
-		<input hidden type="checkbox" id="checkbox" name="following" bind:value={following} />
-		<button class="btn btn-sm btn-outline-secondary action-btn">
+		<button
+			formaction="/profile/@{username}?/togglefollow&following={following}"
+			class="btn btn-sm btn-outline-secondary action-btn"
+		>
 			<i class="ion-plus-round" />
 			&nbsp; {following ? "Unfollow" : "Follow"}
 			{username}
